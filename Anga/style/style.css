@@ -1,0 +1,66 @@
+body {
+    background-color: #2B2C45;
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-style: normal;
+}
+
+#header h1 {
+    color: white;
+    border-bottom: none;
+    font-size: 580%;
+}
+
+.jumbotron {
+    background-color: #2B2C45;
+}
+
+.panel {
+    background-color: #2D2F59;
+    border-color: #878787;
+    box-shadow: 1px 1px #363856;
+}
+
+.panel-title{
+    font-size: 22px;
+}
+
+.panel-primary > .panel-heading {
+    background-color: #444561;
+    border-color: #2B2C45;
+}
+
+@media (max-width: 768px) {
+    .sidePanel {
+        cursor: pointer;
+    }
+}
+
+#weatherInfoContent {
+    color: black;
+}
+
+.list-group-item {
+    background-color: #4A4C7F;
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    font-family: 'Comfortaa', cursive;
+}
+
+.list-group li:nth-child(odd) {
+    background-color: #2B2C45;
+}
+
+.list-group li:nth-child(even) {
+    background-color: #444561;
+}
+
+#todayWeatherContent {
+    font-size: 40px;
+}
+
+.summary {
+    font-size: 20px;
+}

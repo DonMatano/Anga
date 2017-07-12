@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Anga</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style/bootstrap-switch.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Jquery Link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Google Api -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSguHCTmoRXmuhsYDdy6n8os4u-l_mMo">
+    </script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="script/jQueryScript.js"></script>
+    <script src="script/bootstrap-switch.js"></script>
+    <!-- Skycon animation logos -->
+    <script src="script/skycons.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="header" class="jumbotron">
+            <h1 class="text-center">ANGA</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-push-3 col-md-6 col-md-push-3 col-lg-6 col-lg-push-3">
+                <div class="panel panel-primary text-center">
+                    <div class="panel-body" id="todayWeatherContent">
+                        <canvas id="animatedIcon" width="100" height="100"></canvas>
+                        <div class="row">
+                            <div class="tempDegrees col-xs-6 "><span id="todayTempNumber"></span><span class="units">&#8451</span></div>
+                            <div>
+                                <input id="buttonSwitch" class="col-xs-3 col-md-3" type="checkbox" name="my-checkbox" checked data-size="normal" data-on-text="&#8451" data-off-text="&#8457" data-off-color="danger">
+                            </div>
+                        </div>
+                        <div id="locationRow">
+                        </div>
+                        <div class="summary">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-sm-pull-6 col-md-3 col-md-pull-6 col-lg-3 col-lg-pull-6">
+                <div class="panel panel-primary text-center">
+                    <div id="weatherInfoPanel" class="panel-heading sidePanel" data-toggle="collapse" href="#weatherInfoContent">
+                        <h3 class="panel-title">
+                                More Weather Info <span class="visible-xs-inline glyphicon glyphicon-chevron-down" aria-hidden="false"></span>
+                            </h3>
+                    </div>
+                    <div id="weatherInfoContent" class="collapsablePanel panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="text-left list-group">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Max Temp </span> <span id="maxTemp" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Min Temp </span> <span id="minTemp" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Wind Speed (m/s)</span> <span id="windSpeed" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Cloud Cover (%)</span> <span id="cloudCover" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Humidity (%)</span> <span id="humidity" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Pressure (millibars)</span> <span id="pressure" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">Precipitation Probability (%)</span> <span id="precipProbability" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6">UV Index</span> <span id="uvIndex" class="col-xs-3 col-xs-offset-3
+                                        col-sm-3 col-sm-offset-3
+                                        col-md-3 col-md-offset-3
+                                        col-lg-3 col-lg-offset-3 text-right"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="panel panel-primary text-center">
+                    <div id="forecastPanel" class="panel-heading">
+                        <h3 class="panel-title sidePanel" data-toggle="collapse" href="#forecastContent">
+                             Forecast <span class="visible-xs-inline glyphicon glyphicon-chevron-down" aria-hidden="false"></span>
+                        </h3>
+                    </div>
+                    <div id="forecastContent" class="collapsablePanel panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul class="text-left list-group" id="listOfWeatherForecast">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <span class="col-xs-6 col-sm-6 col-md-6 day">Tomorrow </span> <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3" id="tomorrowTemp"></span> <span class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><canvas id="tomorrowWeatherIcon" width="40" height="40"></canvas></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container text-center">
+                <p><a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a></p>
+                <p>Designed and coded by <a href="https://codepen.io/DonMatano/full/qjLdaR/">Matano</a> </p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
